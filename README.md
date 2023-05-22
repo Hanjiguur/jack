@@ -1,3 +1,3 @@
 # jack
 
-lab3- Itu/lab3
+lab1-https://github.com/Hanjiguur/jack/tree/main/Itu/lab1
