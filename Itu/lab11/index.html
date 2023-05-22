@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hha2">
+      <div class="hha1">
+        <header>
+          <div class="Title">
+            <h1>\\</h1>
+          </div>
+        </header>
+        <table style="margin-top: 20px">
+          <tr>
+            <td>
+              <div class="photo">
+                <img id="pic" src="images/hangman6.jpg" alt="haha" />
+              </div>
+            </td>
+            <div class="button">
+              <input type="button" value="reset" onclick="reset()" />
+            </div>
+            <td style="width: 85%; margin-right: 20px; text-align: center">
+              <div class="questions"></div>
+              <div class="game"></div>
+            </td>
+          </tr>
+        </table>
+        <div class="rem_live"><h2>Remaining lives : 4</h2></div>
+        <br /><br />
+        <div class="keyboard">
+          <button class="kb">A</button>
+          <button class="kb">B</button>
+          <button class="kb">C</button>
+          <button class="kb">D</button>
+          <button class="kb">E</button>
+          <button class="kb">F</button>
+          <button class="kb">G</button>
+          <button class="kb">H</button>
+          <button class="kb">I</button>
+          <br /><br />
+          <button class="kb">J</button>
+          <button class="kb">K</button>
+          <button class="kb">L</button>
+          <button class="kb">M</button>
+          <button class="kb">N</button>
+          <button class="kb">O</button>
+          <button class="kb">P</button>
+          <button class="kb">Q</button>
+          <br /><br />
+          <button class="kb">R</button>
+          <button class="kb">S</button>
+          <button class="kb">T</button>
+          <button class="kb">U</button>
+          <button class="kb">V</button>
+          <button class="kb">W</button>
+          <button class="kb">X</button>
+          <button class="kb">Y</button>
+          <button class="kb">Z</button>
+        </div>
+      </div>
+
+      <script>
+        const kr = ["Who likes food in 'friends' movie?", "really?", "hha?"];
+        const arr = ["JOE", "YES", "ERDEMEE"];
+        const size_arr = arr.length;
+        let m = parseInt(Math.floor(Math.random() * size_arr));
+        var ans = arr[m];
+        var guessed = 0;
+        var size = ans.length;
+        var lives = 4;
+        document.querySelector(".questions").innerHTML = kr[m];
+        for (var i = 0; i < size; i++) {
+          var new_div = document.createElement("div");
+          new_div.classList.add("par");
+          document.querySelector(".game").appendChild(new_div);
+          new_div.innerHTML = "<h3>" + ans[i] + "</h3>";
+          document.querySelectorAll(".par h3")[i].className = ans[i];
+        }
+        for (var i = 0; i < size; i++) {
+          var a = 0;
+          while (true) {
+            if (
+              document.querySelectorAll("." + ans[i])[a].style.visibility ==
+              "hidden"
+            ) {
+              a++;
+            } else {
+              document.querySelectorAll("." + ans[i])[a].style.visibility =
+                "hidden";
+              break;
+            }
+          }
+        }
+
+        for (var i = 0; i < 26; i++) {
+          document
+            .querySelectorAll(".kb")
+            [i].addEventListener("click", function () {
+              eve(this);
+            });
+        }
+
+        function eve(th) {
+          if (ans.includes(th.innerHTML) == true) {
+            var b = 0;
+            var same = document.querySelectorAll("." + th.innerHTML);
+            for (var i = 0; i < same.length; i++) {
+              same[i].style.visibility = "visible";
+            }
+            guessed = guessed + same.length;
+            if (guessed == size) {
+              document.querySelector(".rem_live").innerHTML =
+                "<h2>You WON the game</h2>";
+              document.querySelector(".keyboard").style.visibility = "hidden";
+            }
+          } else {
+            lives--;
+            if (lives == 0) {
+              document.querySelector(".rem_live").innerHTML =
+                "<h2>You are Hanged</h2>";
+              document.querySelector(".keyboard").style.visibility = "hidden";
+            } else {
+              document.querySelector(".rem_live").innerHTML =
+                "<h2>Remaining lives : " + lives + "</h2>";
+            }
+            document
+              .querySelector("#pic")
+              .setAttribute("src", "images/hangman" + lives + ".jpg");
+          }
+          th.disabled = true;
+        }
+        function reset() {
+          location.reload();
+        }
+      </script>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>

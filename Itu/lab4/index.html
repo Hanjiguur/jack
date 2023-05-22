@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>
+      const circle = document.querySelector(".circle");
+      const fill = circle.querySelector(".fill");
+      const percent = circle.querySelector(".percent");
+
+      let progress = 75;
+
+      let fillRotation = (progress / 100) * 360;
+      let halfRotation = fillRotation >= 180 ? "rotate(180deg)" : "";
+
+      fill.style.transform = "rotate(" + fillRotation + "deg)";
+      circle.querySelector(".mask.half").style.transform = halfRotation;
+
+      percent.textContent = progress;
+    </script>
+    <style>
+      * {
+        font-family: monospace;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-image: url("./41225afdf79d56648d5a74b1bf1f8cd9.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        color: #fff;
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.3);
+        width: 960px;
+        height: 600px;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+        position: relative;
+        border: 2px solid #fff;
+        animation: fade 1s;
+      }
+      .container:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        animation: light 3s linear infinite;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes light {
+        0% {
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
+        }
+        50% {
+          border-color: rgba(255, 255, 255, 0.7);
+          box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7);
+        }
+        100% {
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
+        }
+      }
+      .circle10 {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+
+        margin: 0 auto;
+        background-color: #000;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .circle10 img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .intro {
+        border-radius: 10px;
+        z-index: 0;
+        height: 580px;
+        background-color: black;
+        width: 230px;
+        margin: 0;
+        padding: 15px;
+      }
+      p {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .profile {
+        float: right;
+        color: white;
+        width: 660px;
+        height: 580px;
+        padding: 0;
+        margin: 0 auto;
+      }
+      .section {
+        background-color: black;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        height: 159px;
+      }
+      .section1 {
+        background-color: black;
+        height: 159px;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        width: 280px;
+      }
+      .section2 {
+        background-color: black;
+        height: 159px;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        width: 280px;
+        float: right;
+      }
+      ul {
+        margin: 10px;
+        margin-left: 20px;
+      }
+      li {
+        padding: 2px;
+      }
+      .list {
+        list-style-type: none;
+      }
+      .h1 {
+        font-size: 18px;
+        margin-left: 20px;
+      }
+      .p {
+        margin: 10px;
+      }
+      .line img {
+        height: 2px;
+        width: 230px;
+      }
+      .circle {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background-color: #f2f2f2;
+      }
+
+      .circle .mask {
+        position: absolute;
+        clip: rect(0, 50px, 50px, 25px);
+      }
+
+      .circle .mask.full,
+      .circle .mask.half {
+        border-radius: 50%;
+      }
+
+      .circle .mask.full {
+        background-color: #ffffff;
+      }
+
+      .circle .mask.half {
+        transform: rotate(180deg);
+        background-color: #999999;
+      }
+
+      .circle .fill {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: gray;
+        transform-origin: left;
+      }
+
+      .circle .fill.fix {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #999999;
+        transform-origin: right;
+        transform: rotate(180deg);
+      }
+
+      .circle .percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: #000000;
+      }
+
+      .circle .percent {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .circle .symbol {
+        font-size: 10px;
+        vertical-align: super;
+      }
+      .circle1 {
+        float: right;
+      }
+      .first {
+        margin-top: 20px;
+      }
+      .circle2 {
+        margin-right: 130px;
+        margin-top: 30px;
+      }
+      .second {
+        margin-top: 20px;
+      }
+      .skill1 {
+        margin: 10px;
+      }
+    </style>
+    <title>CV</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="section">
+          <div class="h1">About me</div>
+          <div class="p">
+            Currently, I have been working as a front-end developer since May of
+            this year. I have one general responsibility: to ensure that website
+            visitors can easily interact with the page. They do this through the
+            combination of design, technology, and programming to code a
+            website’s appearance. Solving more complex problems and continuously
+            learning from the experts gets me better.
+          </div>
+        </div>
+        <div class="section">
+          <div class="h1">Achievements and Awards</div>
+          <ul>
+            <li>2015 , 2016 - Kangaroo math competition silver medal.</li>
+            <li>2018 - 2020 - Chess champion of high school.</li>
+            <li>2020 - Bronze medal, Chess tournament of city, Ulaanbaatar.</li>
+            <li>2020 - Basketball champion of High school.</li>
+            <li>2021 - First place winner of freshman chess competition.</li>
+          </ul>
+        </div>
+        <div class="section2">
+          <div class="h1">Contact</div>
+          <ul class="list">
+            <li><i class="fa fa-connectdevelop"></i> Phone: +976 9999 9999</li>
+            <li><i class="fa fa-dropbox"></i> Email: Example@gmail.com</li>
+            <li><i class="fa fa-empire"></i> Website: Cuinm.com</li>
+            <li><i class="fa fa-gitlab"></i> Address: SS street -478</li>
+          </ul>
+        </div>
+        <div class="section1">
+          <div class="h1">Education summary</div>
+          <ul>
+            <li>2020 - Graduated from High school.</li>
+            <li>
+              2021 - Present, National university of Mongolia, Software
+              engineering.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="intro">
+        <div class="circle10">
+          <img src="pexels-photo-771742.webp" alt="Your Image" />
+        </div>
+        <p>Khanjiguur Otgondavaa</p>
+        <div class="line"><img src="/Solid_white.svg.webp" alt="" /></div>
+        <div class="skills">
+          <div style="font-size: 18px">Skills</div>
+          <div class="line"><img src="/Solid_white.svg.webp" alt="" /></div>
+        </div>
+        <div class="first">
+          <div class="circle1">
+            <div class="skill1">Team working</div>
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+              <div class="mask half">
+                <div class="fill fix"></div>
+              </div>
+              <div class="percentage">
+                <span class="percent">80</span>
+                <span class="symbol">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="circle2">
+            <div class="skills1">Flexability</div>
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+              <div class="mask half">
+                <div class="fill fix"></div>
+              </div>
+              <div class="percentage">
+                <span class="percent">80</span>
+                <span class="symbol">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="second">
+          <div class="circle1">
+            <div class="skill1">Hardworking</div>
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+              <div class="mask half">
+                <div class="fill fix"></div>
+              </div>
+              <div class="percentage">
+                <span class="percent">90</span>
+                <span class="symbol">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="circle2">
+            <div class="skill1">Solving</div>
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+              <div class="mask half">
+                <div class="fill fix"></div>
+              </div>
+              <div class="percentage">
+                <span class="percent">80</span>
+                <span class="symbol">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
